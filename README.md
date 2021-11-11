@@ -2,6 +2,8 @@
 
 A new Flutter project.
 
+![Coverage](https://raw.githubusercontent.com/douglasalipio/projetopiloto/master/coverage_badge.svg?sanitize=true)
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
