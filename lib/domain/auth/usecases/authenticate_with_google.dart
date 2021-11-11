@@ -6,7 +6,7 @@ import '../authentication_repository.dart';
 import '../use_case.dart';
 
 class SignInWithGoogle implements UseCase<void, NoParams> {
-  final AuthenticationRepository repository;
+  final AuthRepository repository;
 
   SignInWithGoogle({required this.repository});
 

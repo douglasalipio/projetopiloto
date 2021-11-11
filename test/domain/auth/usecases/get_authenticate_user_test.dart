@@ -2,18 +2,19 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:projeto_piloto/data/auth/models/auth_model.dart';
+import 'package:projeto_piloto/domain/auth/authentication_repository.dart';
 import 'package:projeto_piloto/domain/auth/use_case.dart';
 import 'package:projeto_piloto/domain/auth/usecases/get_authenticate_user.dart';
 import 'package:projeto_piloto/domain/error/failure.dart';
-
-import 'mock_authentication_repository.dart';
+import 'logout_use_case_test.mocks.dart';
 
 void main() {
-  late final GetAuthentication getUser;
-  late final MockAuthenticationRepository mockAuthRepository;
 
-  setUp(() {
-    mockAuthRepository = MockAuthenticationRepository();
+  late final GetAuthentication getUser;
+  late final AuthRepository mockAuthRepository;
+
+  setUpAll(() {
+    mockAuthRepository = MockAuthRepository();
     getUser = GetAuthentication(repository: mockAuthRepository);
   });
 
@@ -32,20 +33,7 @@ void main() {
       verifyNoMoreInteractions(mockAuthRepository);
     });
 
-    test('should not return user when user try to logged in', () async {
-      // arrange
-      final userModel =
-          AuthModel(email: "email", profileUrl: "url", displayName: "name");
-      when(mockAuthRepository.getAuthenticatedUser())
-          .thenAnswer((_) async => Right(userModel));
-      // act
-      final result = await getUser.call(NoParams());
-      // assert
-      expect(result, Right(userModel));
-      verify(mockAuthRepository.getAuthenticatedUser());
-      verifyNoMoreInteractions(mockAuthRepository);
-    });
-    test('should return a failure when check if user is logged in', () async {
+    test('should thrown an error when get a user', () async {
       // arrange
       when(mockAuthRepository.getAuthenticatedUser())
           .thenAnswer((_) async => Left(ServerFailure()));

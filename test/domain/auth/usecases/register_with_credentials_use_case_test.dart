@@ -1,15 +1,16 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import 'package:projeto_piloto/domain/auth/authentication_repository.dart';
 import 'package:projeto_piloto/domain/auth/entities/auth.dart';
 import 'package:projeto_piloto/domain/auth/usecases/register_with_credentials.dart';
 import 'package:projeto_piloto/domain/error/failure.dart';
 
-import 'mock_authentication_repository.dart';
+import 'logout_use_case_test.mocks.dart';
 
 void main() {
-  late final MockAuthenticationRepository mockAuthenticationRepository;
-  late final RegisterWithCredentials registerWithCredential;
+  late final AuthRepository mockAuthRepository;
+  late final RegisterWithCredentialUsaCase registerWithCredentialUseCase;
   late final Auth user;
   late final Params params;
 
@@ -17,40 +18,42 @@ void main() {
   String password = "12345678";
   String profileUrl = "http://mypic.com";
 
-  setUp(() {
-    mockAuthenticationRepository = MockAuthenticationRepository();
-    registerWithCredential =
-        RegisterWithCredentials(repository: mockAuthenticationRepository);
+  setUpAll(() {
+    mockAuthRepository = MockAuthRepository();
+    registerWithCredentialUseCase =
+        RegisterWithCredentialUsaCase(repository: mockAuthRepository);
     user = Auth(email, password, profileUrl);
     params = Params(email, password);
   });
 
   group('Register user repository tests', () {
-    test('should register a user from  the repoistory', () async {
+    test('should register an user from  the repository', () async {
       // arrange
-      when(mockAuthenticationRepository.registerWithCredentials(email, password))
+      when(
+          mockAuthRepository.registerWithCredentials(email, password))
           .thenAnswer((_) async => Right(user));
       // act
-      final result = await registerWithCredential(params);
+      final result = await registerWithCredentialUseCase(params);
       // assert
       expect(result, Right(user));
-      verify(mockAuthenticationRepository.registerWithCredentials(
+      verify(mockAuthRepository.registerWithCredentials(
           email, password));
-      verifyNoMoreInteractions(mockAuthenticationRepository);
+      verifyNoMoreInteractions(mockAuthRepository);
     });
 
-    test('should return an failure from the repoistory', () async {
+    test('should return an failure from the repository', () async {
       // arrange
       final failure = ServerFailure();
-      when(mockAuthenticationRepository.registerWithCredentials(email, password))
+      when(
+          mockAuthRepository.registerWithCredentials(email, password))
           .thenAnswer((_) async => Left(failure));
       // act
-      final result = await registerWithCredential(Params(email, password));
+      final result = await registerWithCredentialUseCase(Params(email, password));
       // assert
       expect(result, Left(failure));
-      verify(mockAuthenticationRepository.registerWithCredentials(
+      verify(mockAuthRepository.registerWithCredentials(
           email, password));
-      verifyNoMoreInteractions(mockAuthenticationRepository);
+      verifyNoMoreInteractions(mockAuthRepository);
     });
 
     test('verify params property', () {

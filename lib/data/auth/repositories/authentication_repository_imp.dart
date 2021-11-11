@@ -1,4 +1,3 @@
-
 import 'package:dartz/dartz.dart';
 import 'package:projeto_piloto/data/auth/models/auth_model_to_auth_mapper.dart';
 import 'package:projeto_piloto/data/auth/services/authentication_service.dart';
@@ -7,14 +6,15 @@ import 'package:projeto_piloto/domain/auth/entities/auth.dart';
 import 'package:projeto_piloto/domain/error/exceptions.dart';
 import 'package:projeto_piloto/domain/error/failure.dart';
 
-class UserRepositoryImp extends AuthenticationRepository {
-  final AuthenticationService authenticationService;
+class UserRepositoryImp extends AuthRepository {
+  final AuthService authenticationService;
   final mapper = AuthModelToUserMapper();
 
   UserRepositoryImp({required this.authenticationService});
 
   @override
-  Future<Either<Failure, Auth>> registerWithCredentials(String email, String password) async {
+  Future<Either<Failure, Auth>> registerWithCredentials(
+      String email, String password) async {
     try {
       final authModel = await authenticationService.signUp(email, password);
       return Right(mapper.map(authModel));
@@ -27,21 +27,28 @@ class UserRepositoryImp extends AuthenticationRepository {
   Future<Either<Failure, Auth>> getAuthenticatedUser() async {
     try {
       final result = await authenticationService.getAuthenticatedUser();
-      if (result != null) return Right(mapper.map(result));
+      if (result != null) {
+        return Right(mapper.map(result));
+      } else {
+        return Left(ServerFailure());
+      }
     } on ServerException {
       return Left(ServerFailure());
     }
-    return Right(null);
   }
 
   @override
-  Future<Either<Failure, bool>> unauthorizeSession() async {
+  Future<Either<Failure, bool>> logoutUser() async {
     authenticationService.signOut();
-    final result = await authenticationService.getAuthenticatedUser();
-    if (result != null)
-      return Right(true);
-    else
-      return Right(false);
+    try {
+      final result = await authenticationService.getAuthenticatedUser();
+      if (result != null)
+        return Right(true);
+      else
+        return Left(ServerFailure());
+    } on ServerException {
+      return Left(ServerFailure());
+    }
   }
 
   @override

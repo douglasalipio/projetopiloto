@@ -1,23 +1,24 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import 'package:projeto_piloto/domain/auth/authentication_repository.dart';
 import 'package:projeto_piloto/domain/auth/usecases/authenticate_with_credentials.dart';
 import 'package:projeto_piloto/domain/error/failure.dart';
 
-import 'mock_authentication_repository.dart';
+import 'logout_use_case_test.mocks.dart';
 
 void main() {
-  late final AuthenticateWithCredentials signInWithCredentials;
-  late final MockAuthenticationRepository mockRepository;
+  late final SignInWithCredentialUseCase signInWithCredentialUseCase;
+  late final AuthRepository mockRepository;
   late final Params params;
 
   String email = "douglas@gmail.com";
   String password = "12345678";
 
-  setUp(() {
-    mockRepository = MockAuthenticationRepository();
-    signInWithCredentials =
-        AuthenticateWithCredentials(repository: mockRepository);
+  setUpAll(() {
+    mockRepository = MockAuthRepository();
+    signInWithCredentialUseCase =
+        SignInWithCredentialUseCase(repository: mockRepository);
     params = Params(email, password);
   });
 
@@ -26,19 +27,19 @@ void main() {
     when(mockRepository.authenticateWithCredentials(email,password))
         .thenAnswer((_) async => Right(true));
     // act
-    final result = await signInWithCredentials.call(params);
+    final result = await signInWithCredentialUseCase.call(params);
     // assert
     verify(mockRepository.authenticateWithCredentials(email, password));
     expect(result, Right(true));
   });
 
-  test('should return an failure from the repoistory', () async {
+  test('should return an failure from the repository', () async {
     // arrange
     final failure = ServerFailure();
     when(mockRepository.authenticateWithCredentials(email, password))
         .thenAnswer((_) async => Left(failure));
     // act
-    final result = await signInWithCredentials.call(params);
+    final result = await signInWithCredentialUseCase.call(params);
     // assert
     expect(result, Left(failure));
     verify(mockRepository.authenticateWithCredentials(email, password));

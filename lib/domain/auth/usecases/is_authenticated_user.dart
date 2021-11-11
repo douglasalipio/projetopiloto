@@ -6,7 +6,7 @@ import '../authentication_repository.dart';
 import '../use_case.dart';
 
 class IsAuthenticatedUser implements UseCase<bool, NoParams> {
-  final AuthenticationRepository repository;
+  final AuthRepository repository;
 
   IsAuthenticatedUser({required this.repository});
 

@@ -5,7 +5,7 @@ import '../authentication_repository.dart';
 import '../use_case.dart';
 
 class GetAuthentication implements UseCase<Auth, NoParams> {
-  final AuthenticationRepository repository;
+  final AuthRepository repository;
 
   GetAuthentication({required this.repository});
 

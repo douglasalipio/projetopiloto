@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:projeto_piloto/data/auth/models/auth_model.dart';
 
-class AuthenticationServiceImp extends AuthenticationService {
+class AuthServiceImp extends AuthService {
   final _firebaseAuth = FirebaseAuth.instance;
   final _googleSignIn = GoogleSignIn();
 
@@ -19,7 +19,7 @@ class AuthenticationServiceImp extends AuthenticationService {
   }
 
   @override
-  Future<AuthModel> getAuthenticatedUser() async {
+  Future<AuthModel?> getAuthenticatedUser() async {
     User? currentUser = _firebaseAuth.currentUser!;
     return AuthModel(
         email: currentUser.email!,
@@ -40,18 +40,20 @@ class AuthenticationServiceImp extends AuthenticationService {
   }
 
   Future<void> signInWithGoogle() async {
-    final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
-    final GoogleSignInAuthentication googleAuth =
-        await googleUser.authentication;
-    final AuthCredential credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth.accessToken,
-      idToken: googleAuth.idToken,
-    );
-    await _firebaseAuth.signInWithCredential(credential);
+    final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+    if (googleUser != null) {
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+      await _firebaseAuth.signInWithCredential(credential);
+    }
   }
 }
 
-abstract class AuthenticationService {
+abstract class AuthService {
   Future<AuthModel> signUp(String email, String password);
 
   Future<void> signInWithGoogle();
@@ -60,5 +62,5 @@ abstract class AuthenticationService {
 
   Future<void> signOut();
 
-  Future<AuthModel> getAuthenticatedUser();
+  Future<AuthModel?> getAuthenticatedUser();
 }

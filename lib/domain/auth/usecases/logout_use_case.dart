@@ -4,12 +4,13 @@ import 'package:projeto_piloto/domain/error/failure.dart';
 import '../authentication_repository.dart';
 import '../use_case.dart';
 
-class UnauthorizeSession implements UseCase<void, NoParams> {
-  final AuthenticationRepository repository;
+//authenticationRepository should be this class
+class LogoutUseCase implements UseCase<void, NoParams> {
+  final AuthRepository repository;
 
-  UnauthorizeSession({required this.repository});
+  LogoutUseCase({required this.repository});
 
   @override
   Future<Either<Failure, void>> call(NoParams params) async =>
-      await repository.unauthorizeSession();
+      await repository.logoutUser();
 }

@@ -6,10 +6,10 @@ import 'package:projeto_piloto/domain/error/failure.dart';
 import '../authentication_repository.dart';
 import '../use_case.dart';
 
-class AuthenticateWithCredentials implements UseCase<void, Params> {
-  final AuthenticationRepository repository;
+class SignInWithCredentialUseCase implements UseCase<void, Params> {
+  final AuthRepository repository;
 
-  AuthenticateWithCredentials({required this.repository});
+  SignInWithCredentialUseCase({required this.repository});
 
   @override
   Future<Either<Failure, void>> call(Params params) async => await repository
