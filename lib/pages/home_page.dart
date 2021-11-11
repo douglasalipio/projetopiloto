@@ -79,7 +79,7 @@ class HomePage extends StatelessWidget {
                         label: Text('DIVULGAÇÃO DE RESULTADOS'),
                         tooltip: 'represents phone number of the user'),
                   ],
-                  rows: provider.data.results
+                  rows: provider.data!.results
                       .map((data) =>
                           // we return a DataRow every time
                           DataRow(

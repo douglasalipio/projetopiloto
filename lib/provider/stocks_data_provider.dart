@@ -4,7 +4,8 @@ import 'package:flutter/widgets.dart';
 import 'package:projeto_piloto/model/stock_data.dart';
 
 class StocksDataProvider extends ChangeNotifier {
-  StockData data;
+
+  StockData? data;
 
   Future getData(context) async {
     // You can call an API to get data, once we've the data from API or any other flow... Following part would always be the same.
