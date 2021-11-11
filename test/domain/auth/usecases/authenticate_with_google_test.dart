@@ -1,12 +1,15 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import 'package:projeto_piloto/domain/auth/use_case.dart';
+import 'package:projeto_piloto/domain/auth/usecases/authenticate_with_google.dart';
+import 'package:projeto_piloto/domain/error/failure.dart';
 
 import 'mock_authentication_repository.dart';
 
 void main() {
-  SignInWithGoogle signInWithGoogle;
-  MockAuthenticationRepository mockRepository;
+  late final SignInWithGoogle signInWithGoogle;
+  late final MockAuthenticationRepository mockRepository;
 
   setUp(() {
     mockRepository = MockAuthenticationRepository();

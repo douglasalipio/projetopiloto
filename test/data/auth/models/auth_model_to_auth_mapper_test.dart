@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:projeto_piloto/Infrastructure/auth/data/models/auth_model.dart';
-import 'package:projeto_piloto/Infrastructure/auth/data/models/auth_model_to_auth_mapper.dart';
+import 'package:projeto_piloto/data/auth/models/auth_model.dart';
+import 'package:projeto_piloto/data/auth/models/auth_model_to_auth_mapper.dart';
 
 void main() {
   final mapper = AuthModelToUserMapper();

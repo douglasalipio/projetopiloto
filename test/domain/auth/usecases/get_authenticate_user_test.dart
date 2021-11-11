@@ -2,13 +2,15 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:projeto_piloto/data/auth/models/auth_model.dart';
+import 'package:projeto_piloto/domain/auth/use_case.dart';
 import 'package:projeto_piloto/domain/auth/usecases/get_authenticate_user.dart';
+import 'package:projeto_piloto/domain/error/failure.dart';
 
 import 'mock_authentication_repository.dart';
 
 void main() {
-  GetAuthentication getUser;
-  MockAuthenticationRepository mockAuthRepository;
+  late final GetAuthentication getUser;
+  late final MockAuthenticationRepository mockAuthRepository;
 
   setUp(() {
     mockAuthRepository = MockAuthenticationRepository();

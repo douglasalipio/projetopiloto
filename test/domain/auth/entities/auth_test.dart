@@ -1,6 +1,6 @@
-import 'package:app/features/authentication/data/models/auth_model.dart';
-import 'package:app/features/authentication/domain/entities/auth.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:projeto_piloto/data/auth/models/auth_model.dart';
+import 'package:projeto_piloto/domain/auth/entities/auth.dart';
 
 void main() {
   test('should be a subclass of user entity', () async {

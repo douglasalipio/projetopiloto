@@ -1,17 +1,18 @@
-import 'package:app/core/error/failure.dart';
-import 'package:app/features/authentication/domain/usecases/authenticate_with_credentials.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import 'package:projeto_piloto/domain/auth/usecases/authenticate_with_credentials.dart';
+import 'package:projeto_piloto/domain/error/failure.dart';
 
 import 'mock_authentication_repository.dart';
 
 void main() {
-  AuthenticateWithCredentials signInWithCredentials;
-  MockAuthenticationRepository mockRepository;
+  late final AuthenticateWithCredentials signInWithCredentials;
+  late final MockAuthenticationRepository mockRepository;
+  late final Params params;
+
   String email = "douglas@gmail.com";
   String password = "12345678";
-  Params params;
 
   setUp(() {
     mockRepository = MockAuthenticationRepository();
@@ -22,7 +23,7 @@ void main() {
 
   test('should login with credentials', () async {
     // arrange
-    when(mockRepository.authenticateWithCredentials(any, any))
+    when(mockRepository.authenticateWithCredentials(email,password))
         .thenAnswer((_) async => Right(true));
     // act
     final result = await signInWithCredentials.call(params);
@@ -34,7 +35,7 @@ void main() {
   test('should return an failure from the repoistory', () async {
     // arrange
     final failure = ServerFailure();
-    when(mockRepository.authenticateWithCredentials(any, any))
+    when(mockRepository.authenticateWithCredentials(email, password))
         .thenAnswer((_) async => Left(failure));
     // act
     final result = await signInWithCredentials.call(params);
