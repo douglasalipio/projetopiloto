@@ -2,14 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:projeto_piloto/provider/stocks_data_provider.dart';
 import 'package:provider/provider.dart';
 
-class HomePage extends StatelessWidget {
+class FiisWalletPage extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text('Guia de Cobertura'),
-      ),
       body: ChangeNotifierProvider<StocksDataProvider>(
         create: (context) => StocksDataProvider(),
         child: Consumer<StocksDataProvider>(
@@ -24,8 +21,10 @@ class HomePage extends StatelessWidget {
               // Data table widget in not scrollable so we have to wrap it in a scroll view when we have a large data set..
               child: SingleChildScrollView(
                 child: DataTable(
-                  dataRowColor: MaterialStateColor.resolveWith((states) => Colors.grey),
-                  headingRowColor: MaterialStateColor.resolveWith((states) => Colors.blue),
+                  dataRowColor:
+                      MaterialStateColor.resolveWith((states) => Colors.grey),
+                  headingRowColor:
+                      MaterialStateColor.resolveWith((states) => Colors.blue),
                   columns: [
                     DataColumn(
                         label: Text('EMPRESA', textAlign: TextAlign.left),
@@ -40,7 +39,8 @@ class HomePage extends StatelessWidget {
                         label: Text('COTAÇÃO', textAlign: TextAlign.center),
                         tooltip: 'represents email address of the user'),
                     DataColumn(
-                        label: Text('VARIAÇÃO DIA', textAlign: TextAlign.center),
+                        label:
+                            Text('VARIAÇÃO DIA', textAlign: TextAlign.center),
                         tooltip: 'represents phone number of the user'),
                     DataColumn(
                         label: Text('PREÇO TETO', textAlign: TextAlign.center),
@@ -49,7 +49,8 @@ class HomePage extends StatelessWidget {
                         label: Text('PREÇO JUSTO', textAlign: TextAlign.center),
                         tooltip: 'represents phone number of the user'),
                     DataColumn(
-                        label: Text('DATA DA ATUALIZAÇÃO DO VALUATION', textAlign: TextAlign.center),
+                        label: Text('DATA DA ATUALIZAÇÃO DO VALUATION',
+                            textAlign: TextAlign.center),
                         tooltip: 'represents if user is verified.'),
                     DataColumn(
                         label: Text('RISCO'),
@@ -85,12 +86,18 @@ class HomePage extends StatelessWidget {
                           DataRow(
                               // List<DataCell> cells is required in every row
                               cells: [
-                                DataCell(Text(data.empresa, textAlign: TextAlign.right)),
-                                DataCell(Text(data.setor, textAlign: TextAlign.center)),
-                                DataCell(Text(data.acao, textAlign: TextAlign.center)),
-                                DataCell(Text(data.cotacao, textAlign: TextAlign.center)),
-                                DataCell(Text(data.variacao_dia, textAlign: TextAlign.center)),
-                                DataCell(Text(data.preco_teto, textAlign: TextAlign.right)),
+                                DataCell(Text(data.empresa,
+                                    textAlign: TextAlign.right)),
+                                DataCell(Text(data.setor,
+                                    textAlign: TextAlign.center)),
+                                DataCell(Text(data.acao,
+                                    textAlign: TextAlign.center)),
+                                DataCell(Text(data.cotacao,
+                                    textAlign: TextAlign.center)),
+                                DataCell(Text(data.variacao_dia,
+                                    textAlign: TextAlign.center)),
+                                DataCell(Text(data.preco_teto,
+                                    textAlign: TextAlign.right)),
                                 DataCell(Text(data.preco_justo)),
                                 DataCell(Text(data.data_valuation)),
                                 DataCell(Text(data.risco)),
