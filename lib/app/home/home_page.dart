@@ -12,7 +12,12 @@ class HomePage extends StatefulWidget {
 /// This is the private State class that goes with MyStatefulWidget.
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
-  final List _widgetOptions = [FiisWalletPage(), FiisWalletPage(),FiisWalletPage(),FiisWalletPage()];
+  final List _widgetOptions = [
+    FiisWalletPage(),
+    FiisWalletPage(),
+    FiisWalletPage(),
+    FiisWalletPage()
+  ];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -34,26 +39,26 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
-            backgroundColor: Colors.red,
+            backgroundColor: Colors.blue,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Business',
-            backgroundColor: Colors.green,
+            icon: Icon(Icons.insert_chart),
+            label: 'Relatórios',
+            backgroundColor: Colors.blue,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.school),
-            label: 'School',
-            backgroundColor: Colors.purple,
+            label: 'Material',
+            backgroundColor: Colors.blue,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
             label: 'Settings',
-            backgroundColor: Colors.pink,
+            backgroundColor: Colors.blue,
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Colors.yellow,
         onTap: _onItemTapped,
       ),
     );
