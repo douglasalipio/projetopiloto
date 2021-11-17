@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_piloto/app/wallet/fiis_wallet_page.dart';
+import 'package:projeto_piloto/app/wallet/pages/fiis_wallet_widget.dart';
+import 'package:projeto_piloto/app/wallet/widgets/wallet_page.dart';
 
 /// This is the stateful widget that the main application instantiates.
 class HomePage extends StatefulWidget {
@@ -14,9 +15,9 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   final List _widgetOptions = [
     FiisWalletPage(),
-    FiisWalletPage(),
-    FiisWalletPage(),
-    FiisWalletPage()
+    WalletPage(),
+    Container(),
+    Container()
   ];
 
   void _onItemTapped(int index) {
@@ -28,9 +29,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('BottomNavigationBar Sample'),
-      ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
@@ -42,7 +40,7 @@ class _HomePageState extends State<HomePage> {
             backgroundColor: Colors.blue,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.insert_chart),
+            icon: Icon(Icons.account_balance_wallet),
             label: 'Relatórios',
             backgroundColor: Colors.blue,
           ),

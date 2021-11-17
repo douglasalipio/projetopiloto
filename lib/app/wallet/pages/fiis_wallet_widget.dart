@@ -7,6 +7,7 @@ class FiisWalletPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: const Text('VG Research')),
       body: ChangeNotifierProvider<StocksDataProvider>(
         create: (context) => StocksDataProvider(),
         child: Consumer<StocksDataProvider>(
