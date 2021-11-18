@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:projeto_piloto/app/menu_page.dart';
+import 'package:projeto_piloto/app/home_page.dart';
 import 'package:projeto_piloto/app/splash_screen_page.dart';
 
 void main() {
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
               // is not restarted.
               primarySwatch: Colors.blue,
             ),
-            home: MenuPage(),
+            home: HomePage(),
           );
         }
       },
