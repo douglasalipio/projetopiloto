@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_piloto/app/home/home_page.dart';
+import 'package:projeto_piloto/app/menu_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomePage(),
+      home: MenuPage(),
     );
   }
 }

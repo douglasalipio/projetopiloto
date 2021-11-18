@@ -66,6 +66,9 @@ flutter:
     - assets/raw/
     - dividendos_img.png
     - building_img.png
+    - b32.png
+    - copasa3.png
+    - mrv.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
