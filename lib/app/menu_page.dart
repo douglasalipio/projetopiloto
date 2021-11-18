@@ -15,8 +15,8 @@ class MenuPage extends StatefulWidget {
 class _MenuPageState extends State<MenuPage> {
   int _selectedIndex = 0;
   final List _widgetOptions = [
-    ReportPage(),
     WalletPage(),
+    ReportPage(),
     Container(),
     Container()
   ];
@@ -36,13 +36,13 @@ class _MenuPageState extends State<MenuPage> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.show_chart),
-            label: 'Relatório',
+            icon: Icon(Icons.account_balance_wallet),
+            label: 'Carteiras',
             backgroundColor: Colors.blue,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.account_balance_wallet),
-            label: 'Carteiras',
+            icon: Icon(Icons.show_chart),
+            label: 'Relatório',
             backgroundColor: Colors.blue,
           ),
           BottomNavigationBarItem(
