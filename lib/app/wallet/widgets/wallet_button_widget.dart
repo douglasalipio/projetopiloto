@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_piloto/app/wallet/pages/wallet_detail_page.dart';
 
 class WalletButtonWidget extends StatelessWidget {
   const WalletButtonWidget(
@@ -12,13 +13,15 @@ class WalletButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _walletButton(
+        context: context,
         heading: heading,
         subheading: subheading,
         supportingText: supportingText);
   }
 
   Card _walletButton(
-      {String? heading = "",
+      {BuildContext? context,
+        String? heading = "",
       String? subheading = "",
       String? supportingText = ""}) {
     var cardImage =
@@ -56,7 +59,10 @@ class WalletButtonWidget extends StatelessWidget {
                 TextButton(
                   child: const Text('Abrir', style: TextStyle(color: Colors.green),),
                   onPressed: () {
-                    /* ... */
+                    Navigator.push(
+                      context!,
+                      MaterialPageRoute(builder: (context) => WalletDetailPage(heading: heading,)),
+                    );
                   },
                 )
               ],

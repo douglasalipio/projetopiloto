@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:projeto_piloto/provider/stocks_data_provider.dart';
 import 'package:provider/provider.dart';
 
-class FiisWalletPage extends StatelessWidget {
+class WalletFiisWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('VG Research')),
       body: ChangeNotifierProvider<StocksDataProvider>(
         create: (context) => StocksDataProvider(),
         child: Consumer<StocksDataProvider>(
@@ -23,9 +22,9 @@ class FiisWalletPage extends StatelessWidget {
               child: SingleChildScrollView(
                 child: DataTable(
                   dataRowColor:
-                      MaterialStateColor.resolveWith((states) => Colors.grey),
+                      MaterialStateColor.resolveWith((states) => Colors.white),
                   headingRowColor:
-                      MaterialStateColor.resolveWith((states) => Colors.blue),
+                      MaterialStateColor.resolveWith((states) => Colors.white),
                   columns: [
                     DataColumn(
                         label: Text('EMPRESA', textAlign: TextAlign.left),
