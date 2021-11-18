@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_piloto/model/stock_data.dart';
 import 'package:projeto_piloto/provider/stocks_data_provider.dart';
 import 'package:provider/provider.dart';
 
 class WalletFiisWidget extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,8 +23,8 @@ class WalletFiisWidget extends StatelessWidget {
                 child: DataTable(
                   dataRowColor:
                       MaterialStateColor.resolveWith((states) => Colors.white),
-                  headingRowColor:
-                      MaterialStateColor.resolveWith((states) => Colors.white),
+                  headingRowColor: MaterialStateColor.resolveWith(
+                      (states) => Colors.white12),
                   columns: [
                     DataColumn(
                         label: Text('EMPRESA', textAlign: TextAlign.left),
@@ -118,5 +118,9 @@ class WalletFiisWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Widget _rowBuild(Results row) {
+    return Container();
   }
 }

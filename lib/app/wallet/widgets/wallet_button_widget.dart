@@ -3,12 +3,17 @@ import 'package:projeto_piloto/app/wallet/pages/wallet_detail_page.dart';
 
 class WalletButtonWidget extends StatelessWidget {
   const WalletButtonWidget(
-      {Key? key, this.heading, this.subheading, this.supportingText})
+      {Key? key,
+      this.heading,
+      this.subheading,
+      this.supportingText,
+      this.imageName})
       : super(key: key);
 
   final String? heading;
   final String? subheading;
   final String? supportingText;
+  final String? imageName;
 
   @override
   Widget build(BuildContext context) {
@@ -16,30 +21,35 @@ class WalletButtonWidget extends StatelessWidget {
         context: context,
         heading: heading,
         subheading: subheading,
-        supportingText: supportingText);
+        supportingText: supportingText,
+        imageName: imageName);
   }
 
   Card _walletButton(
       {BuildContext? context,
-        String? heading = "",
+      String? heading = "",
+      String? imageName = "",
       String? subheading = "",
       String? supportingText = ""}) {
-    var cardImage =
-        NetworkImage('https://source.unsplash.com/random/800x600?house');
+    // var cardImage =
+    //     NetworkImage('https://source.unsplash.com/random/800x600?building');
 
     return Card(
         elevation: 4.0,
         child: Column(
           children: [
-            ListTile(
-              title: Text(heading!),
-              subtitle: Text(subheading!),
-              trailing: Icon(Icons.favorite_outline),
+            Container(
+              color: Colors.white,
+              child: ListTile(
+                title: Text(heading!),
+                subtitle: Text(subheading!),
+                trailing: Icon(Icons.favorite_outline),
+              ),
             ),
             Container(
               height: 150.0,
               child: Ink.image(
-                image: cardImage,
+                image: Image.asset(imageName!).image,
                 fit: BoxFit.cover,
               ),
             ),
@@ -51,17 +61,26 @@ class WalletButtonWidget extends StatelessWidget {
             ButtonBar(
               children: [
                 TextButton(
-                  child: const Text('Mais informações',style: TextStyle(color: Colors.green),),
+                  child: const Text(
+                    'Mais informações',
+                    style: TextStyle(color: Colors.green),
+                  ),
                   onPressed: () {
                     /* ... */
                   },
                 ),
                 TextButton(
-                  child: const Text('Abrir', style: TextStyle(color: Colors.green),),
+                  child: const Text(
+                    'Abrir',
+                    style: TextStyle(color: Colors.green),
+                  ),
                   onPressed: () {
                     Navigator.push(
                       context!,
-                      MaterialPageRoute(builder: (context) => WalletDetailPage(heading: heading,)),
+                      MaterialPageRoute(
+                          builder: (context) => WalletDetailPage(
+                                heading: heading,
+                              )),
                     );
                   },
                 )
