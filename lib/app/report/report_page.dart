@@ -109,7 +109,7 @@ class _ExpandableListViewState extends State<ExpandableListView> {
                       height: 50.0,
                       width: 50.0,
                       decoration: new BoxDecoration(
-                        color: Colors.orange,
+                        color: Colors.white,
                         shape: BoxShape.circle,
                       ),
                       child: new Center(
@@ -117,7 +117,7 @@ class _ExpandableListViewState extends State<ExpandableListView> {
                           expandFlag
                               ? Icons.keyboard_arrow_up
                               : Icons.keyboard_arrow_down,
-                          color: Colors.white,
+                          color: Colors.black,
                           size: 30.0,
                         ),
                       ),
