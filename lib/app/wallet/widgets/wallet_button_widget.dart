@@ -78,6 +78,8 @@ class WalletButtonWidget extends StatelessWidget {
                     Navigator.push(
                       context!,
                       MaterialPageRoute(
+                          maintainState: true,
+                          fullscreenDialog: true,
                           builder: (context) => WalletDetailPage(
                                 heading: heading,
                               )),

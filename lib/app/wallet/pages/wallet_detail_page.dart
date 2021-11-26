@@ -9,17 +9,9 @@ class WalletDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(heading!),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: WalletFiisWidget(),
+        appBar: AppBar(
+          title: Text(heading!),
         ),
-      ),
-    );
+        body: WalletFiisWidget());
   }
 }
